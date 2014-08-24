@@ -1,6 +1,8 @@
-# Snailtracker::Rails
+# Snailtracker::Rails (In Development)
 
-TODO: Write a gem description
+The gem used to track bug information for SnailTracker in rails apps.
+
+This is in development and should not yet be used on a production server.
 
 ## Installation
 
@@ -12,18 +14,17 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install snailtracker-rails
-
 ## Usage
 
-TODO: Write usage instructions here
+Setup your API keys and your SnailTracker server URL in ```config/initializers/snailtracker.rb```:
+```
+SNAILTRACKER_API_KEY = "api-key-generated-for-this-app-in-snailtracker"
+SNAILTRACKER_API_URL = "http://your-snailtracker-server-url.com"
+```
+Then, add the following to ```config/application.rb``` after the "class Application < Rails::Application" line:
+```
+config.middleware.insert_after ActionDispatch::DebugExceptions, SnailTracker::Rails::Middleware
+```
 
-## Contributing
-
-1. Fork it ( http://github.com/<my-github-username>/snailtracker-rails/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+## License
+AGPL
